@@ -1,26 +1,16 @@
 // ==UserScript==
 // @name         JUMPIN TEST
-// @match        https://jumpin.chat/tech
-// @match        https://jumpin.chat/notfat
-// @grant        GM_addStyle
-// @grant        GM_notification
-// @grant        GM_setValue
-// @grant        GM_getValue
-// @grant        GM_listValues
+// @match        https://jumpin.chat/*
 // ==/UserScript==
 (function() {
     'use strict';
-
-    var packetCount = 0;
-
+    
     function JC_ChangeTheme(backgroundColour, foregroundColour, applyBackground) {
         for(var i = 0; i < applyBackground.length; ++i) {
             var chatElements = document.getElementsByClassName(applyBackground[i]);
             for(var j = 0; j < chatElements.length; j++) {
                 chatElements[j].style = 'background: ' + backgroundColour + ' !important; color: ' + foregroundColour + ' !important;';
-                console.log('changed style to background: ' + backgroundColour + ' !important;');
             }
-            console.log(chatElements);
         }
     }
 
@@ -41,15 +31,8 @@
             var send = this._send(data);
 
             this.addEventListener('message', function (message) {
-                // When connected
-                if(packetCount > 1) {
-                    //var handle = "NOTFAT_" + Math.floor((Math.random() * 100) + 1);
-                    //this.send("42"+JSON.stringify(["room::handleChange",{"handle":handle}]));
-                } //42["room::handleChange",{"handle":"NOTFAT"}]
-                //console.log(packetCount);
-            }, false, packetCount);
-
-            packetCount += 1;
+              // do stuff
+            }, false);
 
             this.send = function (data) {
                 this._send(data);
